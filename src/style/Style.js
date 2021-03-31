@@ -126,15 +126,15 @@ const create = StyleSheet.create({
         marginBottom: 10,
         fontSize: 14,
     },
-    error:{
+    error:(display='none')=>({
         fontSize: 14,
         color: 'rgba(240,20,20,1)',
         borderRadius: 4,
         backgroundColor: '#ffffff11',
         marginBottom: 5,
         marginTop:-7,
-        display: 'none',
-    },
+        display: display,
+    }),
     terms:{
         color: '#eee',
         fontSize: 15,
