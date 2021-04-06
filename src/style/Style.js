@@ -16,29 +16,32 @@ const themeProvider = {
 const MyDrawer = StyleSheet.create({
     item:{
         backgroundColor: '#525252',
+        marginLeft: 2,
+        borderRadius: 2,
+        marginTop: 1,
+        marginRight: 2,
     },
     label:{
-        fontSize: 16,
+        fontSize: 15,
         color: '#eee',
     },
     content:{
         flex: 1,
-        backgroundColor: '#313131'
+        backgroundColor: '#313131',
     },
     header:{
         backgroundColor: themeProvider.colors.gray,
-        marginHorizontal: 10,
-        borderRadius: 5,
-        paddingHorizontal: 10,
-        paddingVertical: 25,
+        borderRadius: 2,
+        marginTop: 0,
+        paddingHorizontal: 5,
+        paddingVertical: 15,
         alignItems: 'center',
         justifyContent: 'center',
-        marginVertical: 5,
+        margin: 2,
     },
     divider: {
         height: 1,
-        marginVertical: 3,
-        marginHorizontal: 10,
+        margin: 2,
         backgroundColor:  themeProvider.colors.gray,
     },
     white:{
@@ -92,6 +95,16 @@ const Login = StyleSheet.create({
         marginTop: 10,
         fontSize: 16,
         textAlign: 'right',
+    },
+    cancelButtonStyle:{
+        backgroundColor: '#B44141',borderWidth: 1
+    }
+    ,cancelText:{
+        fontSize:16,
+         paddingVertical: 5,
+         paddingHorizontal: 30,
+         letterSpacing: 1
+         ,fontWeight: 'bold'
     }
 
 });
@@ -154,8 +167,40 @@ const create = StyleSheet.create({
         marginBottom: 5,
         alignSelf: 'center',
     }
-
+    ,confirmButtonStyle:{
+        backgroundColor: '#4B9F30',borderWidth: 1,elevation: 10,
+    }
+    ,confirmText:{
+        fontSize:16,
+         paddingVertical: 5,
+         paddingHorizontal: 30,
+         letterSpacing: 1
+         ,fontWeight: 'bold'
+    }
 
    
 });
-export {MyDrawer, themeProvider, Login, create }
+
+const restrict = StyleSheet.create({
+    header:{
+        backgroundColor: themeProvider.colors.darkGray,
+        color: "#fff",
+    },
+    title: {
+        color: "#fff",
+        letterSpacing: 1.5,
+    },
+    left:{
+        marginLeft: 10,
+        padding: 5,
+        borderRadius: 50
+    }
+});
+const viewBlack = StyleSheet.create({
+    Container: {
+        backgroundColor: themeProvider.colors.gray,
+        width: '100%',
+        height: '100%',
+    }
+})
+export {MyDrawer, themeProvider, Login, create, restrict,viewBlack }
