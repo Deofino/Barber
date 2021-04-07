@@ -200,7 +200,14 @@ const viewBlack = StyleSheet.create({
     Container: {
         backgroundColor: themeProvider.colors.gray,
         width: '100%',
+        paddingHorizontal: 5,
         height: '100%',
     }
 })
-export {MyDrawer, themeProvider, Login, create, restrict,viewBlack }
+const themeEle={
+    Text:{
+        h3Style:{fontSize: 25},
+        style:{color: '#f5f5f5',letterSpacing: 1.3,}
+    }
+}
+export {MyDrawer, themeProvider, Login, create, restrict,viewBlack,themeEle }

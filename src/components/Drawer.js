@@ -10,21 +10,28 @@ export default function(props){
 
     const [name,setName] = useState(null);
     const [username,setUsername] = useState(null);
-
+    const [image,setImage] = useState(null);
+    
     useEffect(()=>{
         (async()=>{
             let user = JSON.parse(await AsyncStorage.getItem('user'));
             setName(user.name);
             setUsername(user.email);
-
         })()
     },[])
+    useEffect(()=>{
+        (async()=>{
+            let uri = await AsyncStorage.getItem('image');
+            setImage(uri);
+        })()
+    },[image])
 
     return (
         <PaperProvider theme={themeProvider}>
             <DrawerContentScrollView {...props}  contentContainerStyle={MyDrawer.content}>
                 <View style={MyDrawer.header}>
-                    <Avatar.Icon icon={()=><Icon name='face' size={35} color='#eee' />} style={MyDrawer.icon} />
+
+                    <Avatar.Image source={{uri:image}} />
                     <Title style={MyDrawer.white}>{name}</Title>
                     <Paragraph style={MyDrawer.white}>{username}</Paragraph>
                 </View>

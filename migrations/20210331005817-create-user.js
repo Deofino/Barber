@@ -12,6 +12,14 @@ module.exports = {
         type: Sequelize.STRING
         
       },
+      birthday:{
+        type: Sequelize.DATE,
+        allowNull: true
+      },
+      image:{
+        type: Sequelize.STRING,
+        allowNull: true
+      },
       email: {
         type: Sequelize.STRING
       },
