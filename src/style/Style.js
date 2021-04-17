@@ -34,19 +34,21 @@ const MyDrawer = StyleSheet.create({
         borderRadius: 2,
         marginTop: 0,
         paddingHorizontal: 5,
-        paddingVertical: 15,
+        paddingVertical: 10,
         alignItems: 'center',
         justifyContent: 'center',
         margin: 2,
     },
     divider: {
-        height: 1,
+        height: 2,
         margin: 2,
         backgroundColor:  themeProvider.colors.gray,
     },
     white:{
         color: 'white',
-    }
+        marginBottom: 0,
+        marginTop: 0,
+    },
 });
 
 const Login = StyleSheet.create({

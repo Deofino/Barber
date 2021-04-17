@@ -1,6 +1,6 @@
 import React, { useState,  } from 'react';
-import { View, Image,  } from "react-native";
-import { Headline, Checkbox, Paragraph, TextInput, Provider as PaperProvider, Button, HelperText,  } from "react-native-paper";
+import { View, Image } from "react-native";
+import { Headline, Checkbox, Paragraph, TextInput, Provider as PaperProvider, Button, HelperText, ActivityIndicator} from "react-native-paper";
 import { themeProvider, create } from '../style/Style';
 import crypto from "crypto-js/md5";
 import AwesomeAlert from "react-native-awesome-alerts";
@@ -19,9 +19,12 @@ export default function Create({ navigation }) {
     const [ErrorConfPassword, setErrorConfPassword] = useState(false);
     const [ErrorUsername, setErrorUsername] = useState(false);
     const [ErrorPassword, setErrorPassword] = useState(false);
+
+    const [loading, setLoading] = useState(false);
+
     
     async function createUser(user){
-        let req = await fetch('http://192.168.0.114:8000/api/insert',
+        let req = await fetch('http://192.168.15.4:7000/api/insert',
         {
             cache: 'default',
             headers: {'Content-Type':'application/json'},
@@ -30,23 +33,23 @@ export default function Create({ navigation }) {
             body: user,
         })
         let res = await req.json();
-
         if(res.status=='ok'){
             setShowAlert(true);
             setMessageAlert('User inserted with success.')
+            setName('');
+            setUsername('');
+            setPassword('');
+            setConfPassword('');
+            setCheckbox(false);
         }else{
             setErrorUsername(res.error);
         }
-        setName('');
-        setUsername('');
-        setPassword('');
-        setConfPassword('');
-        setCheckbox(false);
+        setLoading(false)
+        
     }
-    
+   
     return (
-
-         
+      
 
         <PaperProvider theme={themeProvider}>
             <View style={create.mainView}>
@@ -67,6 +70,7 @@ export default function Create({ navigation }) {
                 </View>
                 <HelperText type='error' style={create.error(!ErrorCheckbox?'none':'flex')}>{ErrorCheckbox}</HelperText>
                 <Button style={create.created} mode='contained' onPress={() => {
+                    setLoading(true);
                     setErrorName('');
                     setMessageAlert(null);
                     setErrorUsername('');
@@ -76,27 +80,35 @@ export default function Create({ navigation }) {
 
                     if (Name.length < 0 || Name.length > 100 || Name == '' || Name == null) {
                         setErrorName('Preencha o nome corretamente.');
+                        setLoading(false);
                         return;
                     } if (Username.length < 0 || Username.length > 100 || Username == '' || Username == null) {
                         setErrorUsername('Preencha o username corretamente.');
+                        setLoading(false);
                         return;
                     }
                     if (Password.length < 0 || Password.length > 32 || Password == '' || Password == null) {
                         setErrorPassword('Preencha a senha corretamente.');
+                        setLoading(false);
                         return;
                     }
                     if(Password.length < 8){
                         setErrorPassword('Digite uma senha maior que 8 caracteres.');
+                        setLoading(false);
                         return;
                     }
                     if (ConfPassword.length < 0 || ConfPassword.length > 32 || ConfPassword == '' || ConfPassword == null) {
                         setErrorConfPassword('Preencha a confirmação de senha corretamente.');
+                        setLoading(false);
                         return;
                     }
                     if (!checkbox){
+                        setLoading(false);
                         setErrorCheckbox('Você precisar aceitar os termos')
+                        return;
                     }
                     if(Password != ConfPassword){
+                        setLoading(false);
                         setErrorConfPassword('Senhas estão diferentes');
                         return;
                     }else{
@@ -106,7 +118,19 @@ export default function Create({ navigation }) {
                             password: crypto(Password).toString(),
                         }));
                     }
-                }}>Create</Button>
+                }}>Create </Button>
+                
+
+                {loading==true && (
+                    <AwesomeAlert 
+                    show={loading}
+                    title='Cadastrando...'
+                    useNativeDriver
+                    customView={(
+                            <ActivityIndicator size={'large'} style={{marginTop: 15}} />  
+                    )}
+                 />
+                )}
                 <AwesomeAlert 
                     show={ShowAlert}
                     title='Wooow new member'
