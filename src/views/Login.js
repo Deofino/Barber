@@ -22,7 +22,7 @@ export default function(props){
         setPassword('');
         setMessageAlert(null);
         setShowAlert(false);
-        let req = await fetch('http://192.168.15.4:7000/api/login',{
+        let req = await fetch('https://deofino-barber.herokuapp.com/api/login',{
             cache: 'default',
             headers: {'Content-Type':'application/json'},
             method: 'post', 

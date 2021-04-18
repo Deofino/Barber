@@ -24,7 +24,7 @@ export default function Create({ navigation }) {
 
     
     async function createUser(user){
-        let req = await fetch('http://192.168.15.4:7000/api/insert',
+        let req = await fetch('https://deofino-barber.herokuapp.com/api/insert',
         {
             cache: 'default',
             headers: {'Content-Type':'application/json'},
