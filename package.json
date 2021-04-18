@@ -1,4 +1,18 @@
 {
+  "expo": {
+    "name": "DelBarber",
+    "icon": "./assets/icon.png",
+    "version": "1.0.0",
+    "slug": "Delfino Barber",
+    "ios": {
+      "bundleIdentifier": "com.delfino.delbarber",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.delfino.delbarber",
+      "versionCode": 1
+    }
+   },
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "node Controller.js",

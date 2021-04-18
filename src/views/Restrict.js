@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { TouchableHighlight } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { Home, Shedule, Edit, Profile } from "../Views";
+import { Home, Shedule, Edit, Profile } from "../views.js";
 import MyDrawer from "../components/Drawer";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';

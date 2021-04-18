@@ -22,6 +22,7 @@ export default function(props){
         setPassword('');
         setMessageAlert(null);
         setShowAlert(false);
+        //https://deofino-barber.herokuapp.com/api/login
         let req = await fetch('https://deofino-barber.herokuapp.com/api/login',{
             cache: 'default',
             headers: {'Content-Type':'application/json'},

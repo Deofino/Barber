@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Login, Create} from "./src/Views";
+import { Login, Create} from "./src/views.js";
 import Restrict from "./src/views/Restrict";
 export default function App() {
   const Stack = createStackNavigator();

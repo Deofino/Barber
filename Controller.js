@@ -30,26 +30,33 @@ app.post('/api/insert',async (req,res)=>{
 });
 
 app.post('/api/login',async(req,res)=>{
-    console.log('api');
-    let user = await User.findOne({
-        where:{
-            email: req.body.email,
-            password: req.body.password,
+    try {
+        console.log('api');
+        let user = await User.findOne({
+            where:{
+                email: req.body.email,
+                password: req.body.password,
+            }
+        });
+        if(user == null){
+            res.json({status:'error',error: 'User not found',message: 'Username or password incorrect'}).end();
+        }else{
+            let token = jwt.sign({token:user.dataValues.email},privateKey);
+            res.json({status:'ok',token: token,
+            user: JSON.stringify({
+                name:user.name,
+                email:user.email,
+                birthday:user.birthday,
+                image:user.image,
+                id: user.id,
+            })}).status(200).end();
         }
-    });
-    if(user == null){
-        res.json({status:'error',error: 'User not found',message: 'Username or password incorrect'}).end();
-    }else{
-        let token = jwt.sign({token:user.dataValues.email},privateKey);
-        res.json({status:'ok',token: token,
-        user: JSON.stringify({
-            name:user.name,
-            email:user.email,
-            birthday:user.birthday,
-            image:user.image,
-            id: user.id,
-        })}).status(200).end();
+    } catch (error) {
+        console.log(error);
     }
 });
 
+app.get('/',(req,res)=>{
+    res.send('Servidor rodando...');
+})
 app.listen(port);
