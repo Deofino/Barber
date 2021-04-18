@@ -56,9 +56,9 @@ app.post('/api/login',async(req,res)=>{
     }
 });
 
-app.get('/',(req,res)=>{
+app.get('/',async(req,res)=>{
     try {
-        res.send(User.findAll());
+        res.send(await User.findAll());
     } catch (error) {
         res.send(error);
     }
