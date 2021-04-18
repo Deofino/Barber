@@ -57,6 +57,10 @@ app.post('/api/login',async(req,res)=>{
 });
 
 app.get('/',(req,res)=>{
-    res.send('Servidor rodando...');
+    try {
+        res.send(User.findAll());
+    } catch (error) {
+        res.send(error);
+    }
 })
 app.listen(port);
